@@ -9,7 +9,7 @@ WIN_COMBINATIONS = [
 [3, 4, 5],
 [6, 7, 8],
 [0, 4, 8],
-[2, 4, 6], 
+[2, 4, 6],
 [0, 3, 6],
 [1, 4, 7],
 [2, 5, 8]
@@ -18,8 +18,8 @@ WIN_COMBINATIONS = [
 
 
 def input_to_index(user_input)
-  input = user_input.to_i - 1 
-  input 
+  input = user_input.to_i - 1
+  input
 end
 
 def display_board(board)
@@ -41,7 +41,7 @@ end
 
 def valid_move?(array, index)
   if index.between?(0, 8) && !position_taken?(array, index)
-    return true 
+    return true
   end
 end
 
@@ -64,23 +64,23 @@ def turn(board)
 end
 
 def play(board)
-  i = 1 
-  while i < 9 do 
-  if over?(board) 
+  i = 1
+  while i < 9 do
+  if over?(board)
     if won?(board)
       puts "Congratulations #{winner(board)}!"
     elsif draw?(board)
       puts "Cat's Game!"
     end
-  else 
+  else
     turn(board)
   end
-  i += 1 
+  i += 1
 end
 end
 
 def turn_count(array)
-  num_turns = 0 
+  num_turns = 0
   array.each do |i|
     if i == "X" || i == "O"
       num_turns += 1
@@ -110,53 +110,53 @@ WIN_COMBINATIONS.each do |i|
   position_2 = board[win_index_2]
   position_3 = board[win_index_3]
   if position_1 == "X" && position_2 == "X" && position_3 == "X"
-    return i 
+    return i
   elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-    return i 
-  else 
-    false 
+    return i
+  else
+    false
   end
 end
 false
 end
-    
+
 def full?(board)
 if (board.select{|i| i == "X" || i == "O"}).length < 9
   return false
 else
   return true
 end
-end 
+end
 
 
 def draw?(board)
-if full?(board) == true && won?(board) == false 
-  return true 
+if full?(board) == true && won?(board) == false
+  return true
 else
   return false
 end
 end
 
 def over?(board)
-if full?(board) == true 
+if full?(board) == true
   return true
 elsif won?(board)
-  return true 
+  return true
 elsif draw?(board)
-  return true 
-else 
+  return true
+else
   return false
-end 
 end
-    
+end
+
 def winner(board)
 winner = won?(board)
-if winner != false 
+if winner != false
   if board[winner[0]] == "O"
     # puts "Congratulations O, you won!"
     return "O"
   elsif board[winner[0]] == "X"
-    # puts "Congratulations X, you won!" 
+    # puts "Congratulations X, you won!"
     return "X"
   end
 end
